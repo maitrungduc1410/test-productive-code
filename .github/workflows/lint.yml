@@ -17,7 +17,7 @@ jobs:
       - name: Install deps
         run: npm install
       - name: Lint commit message
-        run: echo "$CI_COMMIT_MESSAGE" | npx commitlint
+        run: npx commitlint --last --verbose
 
   lint-code:
     runs-on: [ubuntu-latest]
