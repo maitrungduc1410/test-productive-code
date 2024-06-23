@@ -1,0 +1,33 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  lint-commit-msg:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps
+        run: npm install
+      - name: Lint commit message
+        run: echo "$CI_COMMIT_MESSAGE" | npx commitlint
+
+  lint-code:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps
+        run: npm install
+      - name: Lint code
+        run: npm run lint
